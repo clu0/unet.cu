@@ -3,13 +3,13 @@
 TL;DR:
 
 - UNet diffusion model training written in pure C++/CUDA (only unconditional diffusion right now).
-- Currently end to end training runs at about 40% the speed of PyTorch Nightly. The following are benchmarks on one RTX 4090 GPU:
+- Currently end to end training runs at about 40% the speed of PyTorch with `torch.compile`. The following are benchmarks on one RTX 4090 GPU:
 
 | Setup | one full training loop (ms) |
 | --- | --- |
 | This repo | 142.44 |
 | PyTorch | 66.73 |
-| PyTorch Nightly | 59.20 |
+| PyTorch with `torch.compile` | 59.20 |
 
 ## Table of contents
 
@@ -528,13 +528,13 @@ With these changes, the new kernel runs at about 30% faster than the version 2 k
 | CUDA version 3 | 1.3137 |
 | PyTorch | 0.4574 |
 
-After also writing a custom kernel for the `1x1` convolutions, the forward pass is now at about 2/3 the speed of PyTorch and around 45% of the speed of PyTorch Nightly with `torch.compile`:
+After also writing a custom kernel for the `1x1` convolutions, the forward pass is now at about 2/3 the speed of PyTorch and around 45% of the speed of PyTorch with `torch.compile`:
 
 | Setup | UNet forward pass (ms) |
 | --- | --- |
 | CUDA version 3 | 32.8169 |
 | PyTorch | 20.6177 |
-| PyTorch Nightly | 13.4731 |
+| PyTorch with `torch.compile` | 13.4731 |
 
 I tried all the similar techniques mentioned above on optimizing the backward pass of the `3x3` convolution, but right now the speed is still some way off PyTorch:
 
@@ -542,7 +542,7 @@ I tried all the similar techniques mentioned above on optimizing the backward pa
 | --- | --- |
 | CUDA version 3 | 106.2939 |
 | PyTorch | 35.5240 |
-| PyTorch Nightly | 31.7437 |
+| PyTorch with `torch.compile` | 31.7437 |
 
 I will discuss some challenges in opitmizing the backward pass in the next section.
 
@@ -552,7 +552,7 @@ Here are the full training loop times, reproduced from the start of these notes:
 | --- | --- |
 | This repo | 142.44 |
 | PyTorch | 66.73 |
-| PyTorch Nightly | 59.20 |
+| PyTorch with `torch.compile` | 59.20 |
 
 ## Future directions
 
