@@ -18,6 +18,7 @@ inline int min_int(int a, int b) {
     return a < b ? a : b;
 }
 
+// many utils below copied from llm.c
 
 // CUDA error checking
 inline void cuda_check(cudaError_t error, const char *file, int line) {
@@ -119,11 +120,6 @@ float benchmark_kernel(int repeats, Kernel kernel, KernelArgs&&... kernel_args) 
 
     return elapsed_time / repeats;
 }
-
-// ----------------------------------------------------------------------------
-// cuBLAS setup
-
-
 
 // ----------------------------------------------------------------------------
 // fread convenience utils, with nice handling of error checking using macros

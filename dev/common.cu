@@ -9,6 +9,7 @@
 
 cublasHandle_t cublas_handle;
 
+// utils below copied from llm.c
 
 // ----------------------------------------------------------------------------
 // fread convenience utils, with nice handling of error checking using macros

@@ -18,6 +18,8 @@ inline int min_int(int a, int b) {
     return a < b ? a : b;
 }
 
+// utils below copied from llm.c
+
 // CUDA error checking
 inline void cuda_check(cudaError_t error, const char *file, int line) {
     if (error != cudaSuccess) {
