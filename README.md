@@ -3,7 +3,7 @@
 TL;DR:
 
 - UNet diffusion model training written in pure C++/CUDA (only unconditional diffusion right now).
-- Currently end to end training runs at about $40\%$ the speed of PyTorch Nightly:
+- Currently end to end training runs at about 40% the speed of PyTorch Nightly:
 
 | Setup | one full training loop (ms) |
 | --- | --- |
@@ -521,7 +521,7 @@ reinterpret_cast<float4 *>(reg_x)[0] = reinterpret_cast<float4 *>(&x_s[dot_idx *
 
 We cannot vectorize the register loads for the weight matrix because everytime we are loading $TO * 9 = 18$ entries only, which is not a multiple of 4.
 
-With these changes, the new kernel runs at about $30\%$ faster than the version 2 kernel:
+With these changes, the new kernel runs at about 30% faster than the version 2 kernel:
 
 | Conv `3x3` `C_in = 192` forward | time (ms) |
 | --- | --- |
