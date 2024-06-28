@@ -83,10 +83,10 @@ Here are some images generated with our CUDA implementation. The model is traine
 
 The Github repository is organized as follows:
 
-- The `src/` directory contains all different kernels and tests written during development.
+- The `dev/` directory contains all different kernels and tests written during development.
 	- Most neural network layers have two corresponding files: a `.cu` file (e.g. `groupnorm.cu`), which contains different CUDA kernels for the layer, and a `.py` file (e.g. `groupnorm.py`), which contains an identical Pytorch implementation for the layer.
 	- We check that the CUDA kernels are implemented correctly by checking that they produce the same outputs in both forward and backward passes as the ground truth pytorch versions (up to floating point errors).
-- `train_unet.cu` is a single file with the full diffusion model training code. We take the best kernels from `src/` and copy them here. The file also contains things like data loaders and optimizers.
+- `train_unet.cu` is a single file with the full diffusion model training code. We take the best kernels from `dev/` and copy them here. The file also contains things like data loaders and optimizers.
 
 For a tutorial on how to write the forward/backward pass of different layers, I recommend Andrej's [layernorm tutorial](https://github.com/karpathy/llm.c/blob/master/doc/layernorm/layernorm.md).
 
