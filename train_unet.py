@@ -953,7 +953,7 @@ def main():
 
     model = create_model(**args_to_dict(args, model_and_diffusion_defaults().keys()))
     if args.init_model_only:
-        print("Only initializing model and saving binary weights")
+        print(f"Only initializing model, saving binary weights to {args.init_model_filename}")
         save_model_params_to_bin(model, args.init_model_filename)
         return
 

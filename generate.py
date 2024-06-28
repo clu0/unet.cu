@@ -86,3 +86,4 @@ if __name__ == "__main__":
     # save img_np as image
     img = Image.fromarray(img_np)
     img.save(args.output_filename)
+    print(f"Saved sample to {args.output_filename}")
